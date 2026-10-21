@@ -1,0 +1,9 @@
+# 宽带更新来源与范围
+
+本更新是内部两轨引擎及完整应用源码，不是原厂六轨/私有音色复刻，也不是完整商业发行许可确认。保留旧运行时和原应用，新增独立入口；不复制Demucs权重，不调用该权重。
+
+- Spleeter代码及预训练模型MIT声明来源：Deezer作者paper.md，固定c8854001ac8acad34a9bc2bd15f28475541828b1；LICENSE-Spleeter.txt为该版本MIT。该声明不等于独立训练数据权利审计。
+- UNet实现来自sherpa-onnx 1a9d234ab95567eba8c2e89873a87d70b79633e2，Apache2，许可证见LICENSE-sherpa-onnx.txt。weights由其官方source-separation-models release提供，vocals SHA256 bdc16ab6bf6117ddd4842c19e80e40e2be188fc555295064d424616b0224ac97；accompaniment SHA256 671ace17acd3720674a2bc14de32ac6292453dec20d9eb0ba4255d4ad8e3d8c0。
+- Seed-VC适配器及修改以文件SPDX GPL3标记；完整适配源码在本目录，Seed-VC GPL3正文见LICENSE-Seed-VC.txt，底层固定源码51383efd921027683c89e5348211d93ff12ac2a8仍复用旧包runtime/seed-vc。没有把GPL说成禁止收费。
+- 其它运行时和模型仍复用旧安装对应通知/来源；本更新没有重新打包它们或宣布全部商业清理完成。
+- 新worker用NumPy/SciPy/SoundFile/PyTorch/onnx，从固定ONNX提取张量而非pickle载入；现有onnxruntime只关闭遥测。F2048排除Nyquist，仅两轨，11kHz以上外推可能有伪影。

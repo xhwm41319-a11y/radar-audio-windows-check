@@ -1,0 +1,7 @@
+{
+  "artifact": "RADAR-CoverLab-Windows-x64-CPU-候选2.zip",
+  "zip_sha256": "6e0bed99d74b6ac2a745dfe46533972deac2ff24d6f97d0f271c5eaaca1b33e0",
+  "expected_files": 3056,
+  "manifest_sha256": "0fc8978870ec1484d157422499b47dd7a81c3000664de5126fd58138eb82a106",
+  "scope": "Reconstructed exact payload bytes; original ZIP extraction not tested"
+}

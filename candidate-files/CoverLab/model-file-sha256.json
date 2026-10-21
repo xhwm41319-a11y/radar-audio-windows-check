@@ -1,0 +1,110 @@
+[
+  {
+    "section": "voice",
+    "path": "Plachta--Seed-VC/DiT_seed_v2_uvit_whisper_base_f0_44k_bigvgan_pruned_ft_ema_v2.pth",
+    "bytes": 820865494,
+    "sha256": "42aef93ffe65857c840d270252fa040f7ba04514945ec460f3ac1ac2a96de684"
+  },
+  {
+    "section": "voice",
+    "path": "Plachta--Seed-VC/config_dit_mel_seed_uvit_whisper_base_f0_44k.yml",
+    "bytes": 2408,
+    "sha256": "ff86f343b08c2def405f075022eeb10dafba23c4eda36d151010f4ca6d7a1a0a"
+  },
+  {
+    "section": "voice",
+    "path": "funasr--campplus/campplus_cn_common.bin",
+    "bytes": 28036335,
+    "sha256": "3388cf5fd3493c9ac9c69851d8e7a8badcfb4f3dc631020c4961371646d5ada8"
+  },
+  {
+    "section": "voice",
+    "path": "nvidia--bigvgan_v2_44khz_128band_512x/bigvgan_generator.pt",
+    "bytes": 489041291,
+    "sha256": "d9fe7ec6bd0b44ed9d66973d5012d8181c1570b01e5c72df51973e241dccd357"
+  },
+  {
+    "section": "voice",
+    "path": "nvidia--bigvgan_v2_44khz_128band_512x/config.json",
+    "bytes": 1403,
+    "sha256": "65b7f487bfaf15256056a75f6667ef5f640214c981922a111927873705ea4ddb"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/added_tokens.json",
+    "bytes": 34604,
+    "sha256": "9715fd2243b6f06a5858b5e32950d2853f73dd5bc201aafcf76f5082a2d8acd1"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/config.json",
+    "bytes": 1967,
+    "sha256": "e6a2b489da1b5aed65a8eb8d1e7466fa867ad5643a8bc138ba708bd56b2875c4"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/generation_config.json",
+    "bytes": 3868,
+    "sha256": "71565b8ef50d0bf7a1193ed4bbed195b94e70c18894d81bba2f1233dcec3ab53"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/merges.txt",
+    "bytes": 493869,
+    "sha256": "2df2990a395e35e8dfbc7511e08c12d56018d8d04691e0133e5d63b21e154dc6"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/model.safetensors",
+    "bytes": 966995080,
+    "sha256": "1d7734884874f1a1513ed9aa760a4f8e97aaa02fd6d93a3a85d27b2ae9ca596b"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/normalizer.json",
+    "bytes": 52666,
+    "sha256": "bf1c507dc8724ca9cf9903640dacfb69dae2f00edee4f21ceba106a7392f26dd"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/preprocessor_config.json",
+    "bytes": 184990,
+    "sha256": "9b5cd03a36fbb8a627c64d98a5b5b126ead95a77720723944487311f0110b666"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/special_tokens_map.json",
+    "bytes": 2194,
+    "sha256": "e67ae3a0aaa99abcd9f187138e12db1f65c16a14761c50ef10eef2c174a7a691"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/tokenizer.json",
+    "bytes": 2480466,
+    "sha256": "27fc476bfe7f17299480be2273fc0608e4d5a99aba2ab5dec5374b4482d1a566"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/tokenizer_config.json",
+    "bytes": 282683,
+    "sha256": "2a4c4281cf9f51ac6ccc406fdc711a087afe6530f671fa7b80953edc498275ce"
+  },
+  {
+    "section": "voice",
+    "path": "openai--whisper-small/vocab.json",
+    "bytes": 835550,
+    "sha256": "8f680bba319e01a653d2e8a5dbc17a9157179e0576e6ce74ce0c06356c6e24f9"
+  },
+  {
+    "section": "separation",
+    "path": "vocals.onnx",
+    "bytes": 39318336,
+    "sha256": "bdc16ab6bf6117ddd4842c19e80e40e2be188fc555295064d424616b0224ac97"
+  },
+  {
+    "section": "separation",
+    "path": "accompaniment.onnx",
+    "bytes": 39318343,
+    "sha256": "671ace17acd3720674a2bc14de32ac6292453dec20d9eb0ba4255d4ad8e3d8c0"
+  }
+]

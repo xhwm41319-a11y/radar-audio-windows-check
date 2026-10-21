@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09111f">
+  <title>RADAR Cover Lab</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div style="padding:12px;background:#173633;color:#fff">宽带两轨本机试用：人声＋伴奏，Spleeter F2048。11kHz以上可能有伪影；不是六轨或商业验收版。</div>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <div class="brand-name">RADAR</div>
+          <div class="brand-product">COVER LAB</div>
+        </div>
+      </div>
+
+      <div class="workspace-label">工作区 <span class="local-indicator"></span><span>本机</span></div>
+      <nav class="primary-nav">
+        <button class="nav-item is-active" type="button" data-target="catalogSection">
+          <span class="nav-glyph" aria-hidden="true">▤</span><span>曲目库</span><span class="nav-count" id="sidebarTrackCount">0</span>
+        </button>
+        <button class="nav-item" type="button" data-target="toolsSection">
+          <span class="nav-glyph" aria-hidden="true">⌁</span><span>音频工具</span>
+        </button>
+        <button class="nav-item" type="button" data-target="voiceSection">
+          <span class="nav-glyph" aria-hidden="true">◉</span><span>AI 声线</span>
+        </button>
+        <button class="nav-item" type="button" data-target="bridgeSection">
+          <span class="nav-glyph" aria-hidden="true">⌘</span><span>设备桥接</span><span class="nav-lock" aria-label="暂不可用">—</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-section-title">当前工作集</div>
+      <div class="workspace-summary">
+        <div class="summary-icon" aria-hidden="true">◌</div>
+        <div class="summary-copy">
+          <strong>本地音轨</strong>
+          <span id="workspaceSummary">等待载入素材</span>
+        </div>
+      </div>
+      <div class="sidebar-foot">
+        <div class="engine-badge"><span class="status-dot" id="engineDot"></span><span id="engineLabel">正在连接本地引擎</span></div>
+        <div class="build-label">RADAR / PRIVATE WORKSPACE</div>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>RADAR</span><span class="crumb-sep">/</span><strong>音轨工作台</strong></div>
+        <div class="topbar-right">
+          <div class="local-chip"><span class="local-chip-dot"></span>本地处理</div>
+          <button class="icon-button compact-trigger" id="compactToggle" type="button" title="切换迷你播放" aria-label="切换迷你播放"><span aria-hidden="true">↙</span><span class="button-label">迷你播放</span></button>
+        </div>
+      </header>
+
+      <main id="mainContent" class="main-content">
+        <section class="page-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span>SESSION 01 <span class="eyebrow-muted">/ LOCAL AUDIO</span></div>
+            <h1>音轨工作台</h1>
+            <p>整理本地素材、试听不同版本，并完成音频处理。</p>
+          </div>
+          <div class="heading-actions">
+            <button class="button button-secondary" id="demoButton" type="button"><span aria-hidden="true">✳</span>载入合成演示</button>
+            <button class="button button-primary" id="uploadButton" type="button"><span aria-hidden="true">＋</span>导入音频</button>
+          </div>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="panel catalog-panel" id="catalogSection" aria-labelledby="catalogTitle">
+            <div class="panel-heading">
+              <div>
+                <div class="section-kicker">LIBRARY <span class="kicker-mark"></span></div>
+                <h2 id="catalogTitle">素材库 <span class="inline-count" id="trackCount">0</span></h2>
+              </div>
+              <button class="icon-button small-icon-button" id="refreshButton" type="button" title="刷新素材库" aria-label="刷新素材库">↻</button>
+            </div>
+            <div class="catalog-controls">
+              <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索曲目名称" autocomplete="off"></label>
+              <div class="role-filters" id="roleFilters" aria-label="按音轨类型筛选"></div>
+            </div>
+            <div class="track-table-wrap">
+              <table class="track-table">
+                <thead><tr><th class="track-name-column">名称</th><th>音轨类型</th><th>时长</th><th class="track-actions-column"><span class="sr-only">操作</span></th></tr></thead>
+                <tbody id="trackRows"></tbody>
+              </table>
+              <div class="empty-state" id="emptyState" hidden>
+                <div class="empty-glyph" aria-hidden="true">◌</div>
+                <strong>这里还没有音频</strong>
+                <span>导入 WAV / MP3，或载入合成演示音频。</span>
+                <button class="text-button" id="emptyImportButton" type="button">选择本地文件 <span aria-hidden="true">↗</span></button>
+              </div>
+            </div>
+            <div class="panel-footer catalog-footer"><span><span class="legend-dot dot-cyan"></span>文件保存在此设备</span><span id="catalogMeta">WAV / MP3</span></div>
+          </section>
+
+          <section class="panel tools-panel" id="toolsSection" aria-labelledby="toolsTitle">
+            <div class="panel-heading">
+              <div>
+                <div class="section-kicker">PROCESSING <span class="kicker-mark violet-mark"></span></div>
+                <h2 id="toolsTitle">处理工作区</h2>
+              </div>
+              <span class="panel-state"><span class="status-dot" id="processDot"></span><span id="operationStatus">待命</span></span>
+            </div>
+            <div class="selected-source">
+              <div class="source-art" aria-hidden="true"><span>♫</span></div>
+              <div class="source-copy"><span>当前源文件</span><strong id="selectedFileName">未选择音频</strong></div>
+              <button class="text-button source-play" id="sourcePlayButton" type="button" disabled><span aria-hidden="true">▶</span>试听</button>
+            </div>
+            <label class="field-label" for="sourceSelect">处理对象</label>
+            <select class="control-select source-select" id="sourceSelect"></select>
+            <div class="operation-tabs" id="operationTabs" role="tablist" aria-label="音频处理操作">
+              <button type="button" role="tab" data-operation="convert" class="is-active">转换</button>
+              <button type="button" role="tab" data-operation="trim">截取</button>
+              <button type="button" role="tab" data-operation="pitch">移调</button>
+              <button type="button" role="tab" data-operation="tempo">变速</button>
+              <button type="button" role="tab" data-operation="normalize">响度</button>
+              <button type="button" role="tab" data-operation="mix">混音</button>
+            </div>
+            <div class="operation-description" id="operationDescription"></div>
+            <div class="operation-params" id="operationParams"></div>
+            <div class="operation-bottom">
+              <label class="format-picker"><span>导出为</span><select class="control-select compact-select" id="formatSelect"><option value="wav">WAV</option><option value="mp3">MP3</option></select></label>
+              <button class="button button-primary process-button" id="processButton" type="button" disabled><span aria-hidden="true">↗</span>开始处理</button>
+            </div>
+            <div class="operation-feedback" id="operationFeedback" aria-live="polite"></div>
+            <div class="recent-results" id="recentResults" hidden>
+              <div class="result-heading"><span>本次结果</span><span class="result-mark">READY</span></div>
+              <div id="resultRows"></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel lyrics-panel" id="lyricsSection" aria-labelledby="lyricsTitle">
+          <div class="panel-heading lyrics-heading">
+            <div>
+              <div class="section-kicker">LYRICS <span class="kicker-mark green-mark"></span></div>
+              <h2 id="lyricsTitle">同步歌词</h2>
+            </div>
+            <div class="lyrics-actions">
+              <label class="offset-control"><span>偏移</span><input id="lyricsOffset" type="range" min="-5000" max="5000" step="50" value="0"><output id="offsetValue">0 ms</output></label>
+              <button class="button button-secondary compact-button" id="importLyricsButton" type="button" disabled><span aria-hidden="true">↥</span>导入 LRC</button>
+              <button class="icon-button small-icon-button" id="popoutLyricsButton" type="button" title="独立歌词窗" aria-label="独立歌词窗" disabled>□↗</button>
+            </div>
+          </div>
+          <div class="lyrics-content">
+            <div class="lyrics-editor-wrap">
+              <div class="lyrics-editor-head"><label for="lyricsEditor">歌词文本</label><span id="lyricsFileLabel">跟随所选音轨</span></div>
+              <textarea id="lyricsEditor" spellcheck="false" placeholder="导入 .lrc 文件，或在此粘贴带时间戳的歌词"></textarea>
+              <div class="lyrics-hint"><span class="legend-dot dot-green"></span>支持 [mm:ss.xx] 时间戳与 [offset:毫秒]</div>
+            </div>
+            <div class="lyrics-preview" aria-label="歌词同步预览">
+              <div class="preview-overline"><span class="live-dot"></span>PLAYBACK SYNC <span id="lyricsPreviewTime">00:00</span></div>
+              <div class="lyrics-lines" id="lyricsLines"><div class="lyrics-placeholder">导入歌词后，将在播放时同步定位。</div></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="lower-grid">
+          <section class="panel capability-panel" id="voiceSection" aria-labelledby="voiceTitle">
+            <div class="panel-heading"><div><div class="section-kicker">VOICE LAB</div><h2 id="voiceTitle">AI 声线转换</h2></div><span id="voiceAvailable">检查引擎中</span></div>
+            <p class="panel-copy">选择干声或带伴奏的音频及3–15秒参考音色，保留原音高。音频不超过10分钟、128 MiB。普通电脑可使用 CPU；本 Windows 通用候选包仅包含 CPU 引擎。速度取决于电脑和音频长度，建议先用短片段验证，可随时停止。生成成功不代表已经通过音色相似度验收。</p>
+            <div style="padding:0 24px 24px;display:grid;gap:12px">
+              <label>输入模式<select id="voiceInputMode" class="control-select" aria-label="输入模式"><option value="dry" selected>干声</option><option value="mixed">混合音频（含伴奏）</option></select></label>
+              <label><span id="voiceSourceLabel">输入干声</span><select id="voiceSource" class="control-select" aria-label="输入音频"></select></label>
+              <label>参考音色<select id="voiceReference" class="control-select" aria-label="参考音色"></select></label>
+              <label>生成模式<select id="voiceSteps" class="control-select"><option value="30">标准 · 30步</option><option value="8">快速验证 · 8步</option></select></label>
+              <label>处理方式<select id="voiceProcessingMode" class="control-select"><option value="auto">自动选择</option><option value="cpu">CPU · 通用兼容</option><option value="gpu" disabled>显卡加速 · 此包未提供</option></select></label>
+              <button id="voiceStart" class="button button-primary" type="button" disabled>生成声线转换</button>
+              <button id="voiceCancel" class="button button-secondary" type="button" hidden>停止本次转换</button>
+              <p id="voiceStatus" aria-live="polite">先从顶部导入两段WAV/MP3音频。</p>
+              <audio id="voicePreview" controls hidden style="max-width:100%"></audio>
+              <a id="voiceDownload" class="button button-secondary" hidden>下载转换音频</a>
+            </div>
+            <div class="capability-note" id="capabilityNote">能力状态读取中</div>
+          </section>
+
+          <section class="panel bridge-panel" id="bridgeSection" aria-labelledby="bridgeTitle">
+            <div class="panel-heading">
+              <div><div class="section-kicker">DEVICE LINK <span class="kicker-mark orange-mark"></span></div><h2 id="bridgeTitle">设备桥接</h2></div>
+              <span class="availability-pill unavailable"><span class="status-dot"></span>未接入</span>
+            </div>
+            <div class="bridge-body">
+              <div class="bridge-illustration" aria-hidden="true"><span class="bridge-node node-left"></span><span class="bridge-line"></span><span class="bridge-node node-right"></span></div>
+              <div class="bridge-copy"><strong>未配置外部宿主连接</strong><span>本地 API 不提供 VST 或设备控制协议。</span></div>
+            </div>
+            <button class="button button-disabled bridge-button" type="button" disabled>连接音频宿主 <span>不可用</span></button>
+          </section>
+        </div>
+
+        <footer class="page-footer"><span>RADAR Cover Lab</span><span>仅处理你导入的本地音频</span><span id="footerEngineStatus">本地 API 状态检查中</span></footer>
+      </main>
+
+      <footer class="player-bar" id="playerBar" aria-label="音频播放器">
+        <audio id="audioElement" preload="metadata"></audio>
+        <div class="player-track">
+          <div class="player-art" aria-hidden="true"><span>♫</span></div>
+          <div class="player-track-copy"><strong id="playerTitle">未选择曲目</strong><span id="playerSubtitle">选择素材开始试听</span></div>
+          <label class="version-picker"><span class="sr-only">切换音轨版本</span><select id="versionSelect" aria-label="切换音轨版本"></select></label>
+        </div>
+        <div class="player-center">
+          <div class="player-controls">
+            <button class="player-control" id="restartButton" type="button" title="从头播放" aria-label="从头播放">↺</button>
+            <button class="play-button" id="playButton" type="button" aria-label="播放" disabled><span id="playIcon" aria-hidden="true">▶</span></button>
+            <button class="player-control" id="stopButton" type="button" title="停止播放" aria-label="停止播放">■</button>
+          </div>
+          <div class="wave-row">
+            <span class="time-label" id="currentTimeLabel">00:00</span>
+            <div class="wave-container">
+              <canvas id="waveformCanvas" aria-label="实际音频波形"></canvas>
+              <input id="seekInput" type="range" min="0" max="1000" value="0" aria-label="播放进度" disabled>
+            </div>
+            <span class="time-label" id="durationLabel">00:00</span>
+          </div>
+          <div class="wave-status" id="waveStatus">载入曲目以分析实际波形</div>
+        </div>
+        <div class="player-volume">
+          <span class="volume-icon" aria-hidden="true">◖</span>
+          <label class="sr-only" for="volumeInput">音量</label>
+          <input id="volumeInput" type="range" min="0" max="1" step="0.01" value="0.82">
+          <button class="player-control expand-control" id="playerCompactToggle" type="button" title="切换迷你播放" aria-label="切换迷你播放">↙</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <section class="compact-strip" id="compactStrip" aria-label="迷你播放器">
+    <div class="compact-brand"><span class="brand-mark compact-brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><strong>RADAR</strong></div>
+    <div class="compact-song"><strong id="compactTitle">未选择曲目</strong><span id="compactSubtitle">本地音频</span></div>
+    <button class="play-button compact-play-button" id="compactPlayButton" type="button" aria-label="播放" disabled><span id="compactPlayIcon" aria-hidden="true">▶</span></button>
+    <div class="compact-seek-wrap"><span id="compactTime">00:00</span><input id="compactSeek" type="range" min="0" max="1000" value="0" aria-label="播放进度" disabled></div>
+    <label class="sr-only" for="compactVolume">音量</label><input id="compactVolume" class="compact-volume" type="range" min="0" max="1" step="0.01" value="0.82">
+    <button class="icon-button small-icon-button compact-close" id="compactExit" type="button" title="退出迷你播放" aria-label="退出迷你播放">↗</button>
+  </section>
+
+  <input id="audioFileInput" type="file" accept=".wav,.mp3,audio/wav,audio/mpeg" multiple hidden>
+  <input id="lrcFileInput" type="file" accept=".lrc,text/plain" hidden>
+  <div class="toast-region" id="toastRegion" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+  <script src="/voice.js" defer></script>
+</body>
+</html>

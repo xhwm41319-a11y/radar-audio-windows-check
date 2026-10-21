@@ -1,0 +1,79 @@
+{
+  "scope": "16 voice-model files and two frozen wideband separation ONNX graphs; bundled FCPE weights are bound in the 103-file engine manifest",
+  "voice": [
+    {
+      "relative_path": "Plachta--Seed-VC/DiT_seed_v2_uvit_whisper_base_f0_44k_bigvgan_pruned_ft_ema_v2.pth",
+      "expected_bytes": 820865494
+    },
+    {
+      "relative_path": "Plachta--Seed-VC/config_dit_mel_seed_uvit_whisper_base_f0_44k.yml",
+      "expected_bytes": 2408
+    },
+    {
+      "relative_path": "funasr--campplus/campplus_cn_common.bin",
+      "expected_bytes": 28036335
+    },
+    {
+      "relative_path": "nvidia--bigvgan_v2_44khz_128band_512x/bigvgan_generator.pt",
+      "expected_bytes": 489041291
+    },
+    {
+      "relative_path": "nvidia--bigvgan_v2_44khz_128band_512x/config.json",
+      "expected_bytes": 1403
+    },
+    {
+      "relative_path": "openai--whisper-small/added_tokens.json",
+      "expected_bytes": 34604
+    },
+    {
+      "relative_path": "openai--whisper-small/config.json",
+      "expected_bytes": 1967
+    },
+    {
+      "relative_path": "openai--whisper-small/generation_config.json",
+      "expected_bytes": 3868
+    },
+    {
+      "relative_path": "openai--whisper-small/merges.txt",
+      "expected_bytes": 493869
+    },
+    {
+      "relative_path": "openai--whisper-small/model.safetensors",
+      "expected_bytes": 966995080
+    },
+    {
+      "relative_path": "openai--whisper-small/normalizer.json",
+      "expected_bytes": 52666
+    },
+    {
+      "relative_path": "openai--whisper-small/preprocessor_config.json",
+      "expected_bytes": 184990
+    },
+    {
+      "relative_path": "openai--whisper-small/special_tokens_map.json",
+      "expected_bytes": 2194
+    },
+    {
+      "relative_path": "openai--whisper-small/tokenizer.json",
+      "expected_bytes": 2480466
+    },
+    {
+      "relative_path": "openai--whisper-small/tokenizer_config.json",
+      "expected_bytes": 282683
+    },
+    {
+      "relative_path": "openai--whisper-small/vocab.json",
+      "expected_bytes": 835550
+    }
+  ],
+  "separation": [
+    {
+      "relative_path": "vocals.onnx",
+      "expected_bytes": 39318336
+    },
+    {
+      "relative_path": "accompaniment.onnx",
+      "expected_bytes": 39318343
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "python-win31215.tar.gz",
+    "source": "https://github.com/astral-sh/python-build-standalone/releases/download/20261020/cpython-3.12.15%2B20261020-x86_64-pc-windows-msvc-install_only_stripped.tar.gz",
+    "resolved_url": "https://release-assets.githubusercontent.com/github-production-release-asset/162334160/25dc43ce-64c2-4c01-b5e7-a845b4ce8bed?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-21T11%3A22%3A27Z&rscd=attachment%3B+filename%3Dcpython-3.12.15%2B20261020-x86_64-pc-windows-msvc-install_only_stripped.tar.gz&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-21T10%3A22%3A14Z&ske=2026-10-21T11%3A22%3A27Z&sks=b&skv=2018-11-09&sig=Ry7gv6EfZK1HqHKfIaogiSDDP4Fp%2FsCgSpZEvm%2FQblo%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MjU4MDE0OSwibmJmIjoxNzkyNTc4MzQ5LCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.QtGRVJeRmYbjLnAIn0fMhwGMVAxvVAgYB6iPUcl4ZXk&response-content-disposition=attachment%3B%20filename%3Dcpython-3.12.15%2B20261020-x86_64-pc-windows-msvc-install_only_stripped.tar.gz&response-content-type=application%2Foctet-stream",
+    "bytes": 21990632,
+    "sha256": "09d9f924296a094c6bd6e7ad22548433b0707064bae56bb43ee591a2d75f4177"
+  },
+  {
+    "path": "ffmpeg-win.zip",
+    "source": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
+    "resolved_url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+    "bytes": 114768076,
+    "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba"
+  }
+]

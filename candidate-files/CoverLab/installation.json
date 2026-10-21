@@ -1,0 +1,7 @@
+{
+  "engine_root": "runtime/seed-vc",
+  "voice_python": "runtime/python/python.exe",
+  "models": "runtime/voice-models",
+  "separation_python": "runtime/python/python.exe",
+  "separation_models": "models/separation"
+}
