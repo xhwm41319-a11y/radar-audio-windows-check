@@ -1,0 +1,76 @@
+name: RADAR Windows native candidate acceptance
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: radar-windows-native
+  cancel-in-progress: false
+jobs:
+  native:
+    name: Native CPU on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+          - os: windows-2025
+            bundle: 'RA space 测试'
+          - os: windows-2022
+            bundle: 'RA'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out approved source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Check reconstruction failure paths
+        shell: pwsh
+        run: |
+          python -B scripts/test_materialize_candidate.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Reconstruct the exact frozen payload
+        timeout-minutes: 12
+        shell: pwsh
+        run: |
+          $bundle = Join-Path $env:RUNNER_TEMP '${{ matrix.bundle }}'
+          $cache = Join-Path $env:RUNNER_TEMP 'RA-cache'
+          $result = Join-Path $env:GITHUB_WORKSPACE 'native-result'
+          New-Item -ItemType Directory -Path $result -Force | Out-Null
+          python scripts/check_runner_space.py --path $env:RUNNER_TEMP --report (Join-Path $result 'runner-space.json')
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python scripts/materialize_candidate.py --target $bundle --cache $cache *> (Join-Path $result 'materialization.log')
+          $code = $LASTEXITCODE
+          Get-Content (Join-Path $result 'materialization.log')
+          if ($code -ne 0) { exit $code }
+      - name: Install and run the native CPU smoke check
+        timeout-minutes: 43
+        shell: pwsh
+        run: |
+          $bundle = Join-Path $env:RUNNER_TEMP '${{ matrix.bundle }}'
+          $result = Join-Path $env:GITHUB_WORKSPACE 'native-result/acceptance'
+          $python = Join-Path $bundle '.bootstrap/python/python.exe'
+          & $python -X utf8 -B scripts/run_native_acceptance.py --bundle $bundle --result $result
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve installer and interruption evidence
+        if: always()
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $bundle = Join-Path $env:RUNNER_TEMP '${{ matrix.bundle }}'
+          $result = Join-Path $env:GITHUB_WORKSPACE 'native-result'
+          python scripts/collect_evidence.py --bundle $bundle --result $result
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Keep bounded test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: native-${{ matrix.os }}-${{ github.run_id }}
+          path: native-result/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 1
